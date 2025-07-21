@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grupo Elance - Onde Ideias Ganham Forma</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #374151;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBvbHlnb24gcG9pbnRzPSIyMCwyIDM1LDEwIDM1LDMwIDIwLDM4IDUsIDMwIDUsMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMiIvPgo8Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSI0IiBmaWxsPSIjM2I4MmY2Ii8+CjxjaXJjbGUgY3g9IjIwIiBjeT0iMTAiIHI9IjIiIGZpbGw9IndoaXRlIi8+CjxjaXJjbGUgY3g9IjMwIiBjeT0iMTUiIHI9IjIiIGZpbGw9IndoaXRlIi8+CjxjaXJjbGUgY3g9IjMwIiBjeT0iMjUiIHI9IjIiIGZpbGw9IndoaXRlIi8+CjxjaXJjbGUgY3g9IjIwIiBjeT0iMzAiIHI9IjIiIGZpbGw9IndoaXRlIi8+CjxjaXJjbGUgY3g9IjEwIiBjeT0iMjUiIHI9IjIiIGZpbGw9IndoaXRlIi8+CjxjaXJjbGUgY3g9IjEwIiBjeT0iMTUiIHI9IjIiIGZpbGw9IndoaXRlIi8+Cjwvc3ZnPg==') no-repeat center;
+            background-size: contain;
+        }
+        
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+        
+        .nav-menu a:hover, .nav-menu a.active {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+        
+        /* Page Container */
+        .page-container {
+            margin-top: 70px;
+            min-height: calc(100vh - 70px);
+        }
+        
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1e40af, #3b82f6, #06b6d4);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMiIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjEpIi8+Cjwvc3ZnPg==') repeat;
+            opacity: 0.3;
+        }
+        
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        
+        .hero .tagline {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            font-style: italic;
+            opacity: 0.9;
+        }
+        
+        .hero .description {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.8;
+        }
+        
+        /* Services Grid */
+        .services {
+            padding: 80px 0;
+            background: #f9fafb;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #1e40af;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 60px;
+            color: #6b7280;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .service-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border-color: #3b82f6;
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #3b82f6;
+        }
+        
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #1e40af;
+        }
+        
+        .service-card p {
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            color: white;
+            padding: 80px 0;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .contact-card {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .contact-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .contact-icon {
+            font-size: 1.5rem;
+            color: #60a5fa;
+        }
+        
+        /* Page Content */
+        .page-content {
+            padding: 80px 0;
+            min-height: 400px;
+        }
+        
+        .empty-page {
+            text-align: center;
+            padding: 100px 0;
+        }
+        
+        .empty-page h2 {
+            font-size: 2.5rem;
+            color: #1e40af;
+            margin-bottom: 20px;
+        }
+        
+        .empty-page p {
+            font-size: 1.2rem;
+            color: #6b7280;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: #3b82f6;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s;
+            margin: 10px;
+        }
+        
+        .btn:hover {
+            background: #1e40af;
+            transform: translateY(-2px);
+        }
+        
+        /* Footer */
+        .footer {
+            background: #374151;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h4 {
+            margin-bottom: 15px;
+            color: #60a5fa;
+        }
+        
+        .footer-section p, .footer-section a {
+            color: #d1d5db;
+            text-decoration: none;
+            line-height: 1.8;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+                background: none;
+                border: none;
+                color: white;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+        }
+        
+        .mobile-menu {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon"></div>
+                <div class="logo-text">GRUPO ELANCE</div>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#" onclick="showPage('home')" class="nav-link active">Home</a></li>
+                    <li><a href="#" onclick="showPage('sobre')" class="nav-link">Sobre</a></li>
+                    <li><a href="#" onclick="showPage('solucoes')" class="nav-link">Soluções</a></li>
+                    <li><a href="#" onclick="showPage('portfolio')" class="nav-link">Portfólio</a></li>
+                    <li><a href="#" onclick="showPage('blog')" class="nav-link">Blog</a></li>
+                    <li><a href="#" onclick="showPage('contato')" class="nav-link">Contato</a></li>
+                </ul>
+                <button class="mobile-menu">☰</button>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-container">
+        <!-- HOME PAGE -->
+        <div id="home" class="page active">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-container">
+                    <h1>GRUPO ELANCE</h1>
+                    <div class="tagline">Onde Ideias Ganham Forma</div>
+                    <div class="description">
+                        Transformamos conceitos em realidade através de soluções inovadoras e estratégicas. 
+                        Nossa experiência e criatividade trabalham juntas para dar vida às suas ideias mais ambiciosas.
+                    </div>
+                    <a href="#" onclick="showPage('contato')" class="btn">Fale Conosco</a>
+                </div>
+            </section>
+
+            <!-- Services Section -->
+            <section class="services">
+                <div class="container">
+                    <h2 class="section-title">Nossos Serviços</h2>
+                    <p class="section-subtitle">
+                        Oferecemos soluções completas e personalizadas para transformar suas ideias em projetos de sucesso, 
+                        com qualidade e inovação em cada etapa do processo.
+                    </p>
+                    
+                    <div class="services-grid">
+                        <div class="service-card">
+                            <div class="service-icon">🎯</div>
+                            <h3>Consultoria Estratégica</h3>
+                            <p>Desenvolvemos estratégias personalizadas para impulsionar seu negócio e alcançar seus objetivos com eficiência e resultados mensuráveis.</p>
+                        </div>
+                        
+                        <div class="service-card">
+                            <div class="service-icon">💡</div>
+                            <h3>Inovação & Desenvolvimento</h3>
+                            <p>Transformamos conceitos inovadores em soluções práticas, utilizando as mais modernas tecnologias e metodologias de desenvolvimento.</p>
+                        </div>
+                        
+                        <div class="service-card">
+                            <div class="service-icon">🚀</div>
+                            <h3>Gestão de Projetos</h3>
+                            <p>Acompanhamento completo desde a concepção até a implementação, garantindo prazos, qualidade e resultados excepcionais.</p>
+                        </div>
+                        
+                        <div class="service-card">
+                            <div class="service-icon">📊</div>
+                            <h3>Análise & Otimização</h3>
+                            <p>Análise profunda de processos e implementação de melhorias contínuas para maximizar a performance e eficiência operacional.</p>
+                        </div>
+                        
+                        <div class="service-card">
+                            <div class="service-icon">🎨</div>
+                            <h3>Design & Criatividade</h3>
+                            <p>Soluções visuais impactantes e funcionais que comunicam sua marca de forma única e memorável no mercado.</p>
+                        </div>
+                        
+                        <div class="service-card">
+                            <div class="service-icon">🤝</div>
+                            <h3>Suporte Especializado</h3>
+                            <p>Acompanhamento contínuo e suporte técnico especializado para garantir o sucesso e evolução constante dos seus projetos.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section class="contact-section">
+                <div class="container">
+                    <h2 class="section-title">Entre em Contato</h2>
+                    <p class="section-subtitle">Estamos prontos para transformar suas ideias em realidade</p>
+                    
+                    <div class="contact-grid">
+                        <div class="contact-card">
+                            <h3>💼 Comercial</h3>
+                            <div class="contact-info">
+                                <div class="contact-item">
+                                    <span class="contact-icon">👨‍💼</span>
+                                    <div>
+                                        <strong>Deibson Wagner</strong><br>
+                                        <a href="tel:11999223513">(11) 99922-3513</a><br>
+                                        <a href="mailto:comercial4@decstands.com.br">comercial4@decstands.com.br</a>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <span class="contact-icon">👩‍💼</span>
+                                    <div>
+                                        <strong>Junilana Diniz</strong><br>
+                                        <a href="tel:11917010431">(11) 91701-0431</a><br>
+                                        <a href="mailto:comercial2@decstands.com.br">comercial2@decstands.com.br</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-card">
+                            <h3>📍 Localização</h3>
+                            <div class="contact-info">
+                                <div class="contact-item">
+                                    <span class="contact-icon">🏢</span>
+                                    <div>
+                                        <strong>Nosso Endereço</strong><br>
+                                        Av Raimundo Pereira de Magalhães, 1720<br>
+                                        São Paulo - SP
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <span class="contact-icon">🌐</span>
+                                    <div>
+                                        <strong>Atendimento</strong><br>
+                                        Segunda a Sexta: 8h às 18h<br>
+                                        Sábado: 8h às 12h
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- SOBRE PAGE -->
+        <div id="sobre" class="page">
+            <div class="page-content">
+                <div class="container">
+                    <div class="empty-page">
+                        <h2>Sobre o Grupo Elance</h2>
+                        <p>Esta página está em desenvolvimento e em breve terá todo o conteúdo sobre nossa empresa.</p>
+                        <a href="#" onclick="showPage('contato')" class="btn">Fale Conosco</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SOLUÇÕES PAGE -->
+        <div id="solucoes" class="page">
+            <div class="page-content">
+                <div class="container">
+                    <div class="empty-page">
+                        <h2>Nossas Soluções</h2>
+                        <p>Em breve apresentaremos detalhadamente todas as nossas soluções e serviços.</p>
+                        <a href="#" onclick="showPage('contato')" class="btn">Solicite um Orçamento</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PORTFÓLIO PAGE -->
+        <div id="portfolio" class="page">
+            <div class="page-content">
+                <div class="container">
+                    <div class="empty-page">
+                        <h2>Nosso Portfólio</h2>
+                        <p>Confira em breve nossos principais cases de sucesso e projetos realizados.</p>
+                        <a href="#" onclick="showPage('home')" class="btn">Voltar ao Início</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BLOG PAGE -->
+        <div id="blog" class="page">
+            <div class="page-content">
+                <div class="container">
+                    <div class="empty-page">
+                        <h2>Blog Grupo Elance</h2>
+                        <p>Em breve teremos artigos exclusivos sobre tendências, inovação e mercado.</p>
+                        <a href="#" onclick="showPage('home')" class="btn">Voltar ao Início</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTATO PAGE -->
+        <div id="contato" class="page">
+            <div class="page-content">
+                <div class="container">
+                    <h2 class="section-title">Fale Conosco</h2>
+                    <p class="section-subtitle">Entre em contato através de nossos canais de atendimento</p>
+                    
+                    <div class="contact-grid">
+                        <div class="contact-card">
+                            <h3>💼 Equipe Comercial</h3>
+                            <div class="contact-info">
+                                <div class="contact-item">
+                                    <span class="contact-icon">👨‍💼</span>
+                                    <div>
+                                        <strong>Deibson Wagner</strong><br>
+                                        Telefone: <a href="tel:11999223513">(11) 99922-3513</a><br>
+                                        E-mail: <a href="mailto:comercial4@decstands.com.br">comercial4@decstands.com.br</a>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <span class="contact-icon">👩‍💼</span>
+                                    <div>
+                                        <strong>Junilana Diniz</strong><br>
+                                        Telefone: <a href="tel:11917010431">(11) 91701-0431</a><br>
+                                        E-mail: <a href="mailto:comercial2@decstands.com.br">comercial2@decstands.com.br</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-card">
+                            <h3>📍 Nossa Localização</h3>
+                            <div class="contact-info">
+                                <div class="contact-item">
+                                    <span class="contact-icon">🏢</span>
+                                    <div>
+                                        <strong>Endereço Comercial</strong><br>
+                                        Av Raimundo Pereira de Magalhães, 1720<br>
+                                        São Paulo - SP<br>
+                                        Brasil
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <span class="contact-icon">🕒</span>
+                                    <div>
+                                        <strong>Horário de Atendimento</strong><br>
+                                        Segunda à Sexta: 8h às 18h<br>
+                                        Sábados: 8h às 12h<br>
+                                        Domingos: Fechado
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Grupo Elance</h4>
+                    <p>Onde Ideias Ganham Forma</p>
+                    <p>Transformamos conceitos em realidade através de soluções inovadoras e estratégicas.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contato Rápido</h4>
+                    <p><a href="tel:11999223513">(11) 99922-3513</a></p>
+                    <p><a href="tel:11917010431">(11) 91701-0431</a></p>
+                    <p><a href="mailto:comercial4@decstands.com.br">comercial4@decstands.com.br</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Localização</h4>
+                    <p>Av Raimundo Pereira de Magalhães, 1720</p>
+                    <p>São Paulo - SP</p>
+                    <p>Brasil</p>
+                </div>
+            </div>
+            <hr style="margin: 30px 0; border: 1px solid #4b5563;">
+            <p>&copy; 2025 Grupo Elance - Onde Ideias Ganham Forma. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Update navigation
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            event.target.classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+        
+        // Mobile menu functionality (placeholder)
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            alert('Menu mobile em desenvolvimento');
+        });
+    </script>
+</body>
+</html>
